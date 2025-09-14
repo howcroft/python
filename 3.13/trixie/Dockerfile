@@ -46,6 +46,7 @@ RUN set -eux; \
 		--enable-option-checking=fatal \
 		--enable-shared \
 		$(test "${gnuArch%%-*}" != 'riscv64' && echo '--with-lto') \
+		--disable-gil \
 		--with-ensurepip \
 	; \
 	nproc="$(nproc)"; \

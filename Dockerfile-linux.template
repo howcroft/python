@@ -191,6 +191,12 @@ RUN set -eux; \
 -}}
 		$(test "${gnuArch%%-*}" != 'riscv64' && echo '--with-lto') \
 {{ ) end -}}
+{{
+	# Enable --disable-gil for Python 3.13+ which supports free-threaded mode
+	if rcVersion | IN("3.13", "3.14-rc") then (
+-}}
+		--disable-gil \
+{{ ) else "" end -}}
 		--with-ensurepip \
 	; \
 	nproc="$(nproc)"; \
